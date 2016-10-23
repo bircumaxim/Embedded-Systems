@@ -13,9 +13,14 @@
 #include <avr/delay.h>
 
 typedef enum dataDirectionMode{
-	inputMode,
-	outputMode
+	input,
+	output
 } dataDirectionMode;
+
+typedef enum pinValue{
+	high,
+	zero
+} pinValue;
 
 typedef struct dirver
 {
@@ -25,9 +30,9 @@ typedef struct dirver
 	uint8_t volatile *outputBuffer;
 } driver;
 
-driver registerNewDriver(uint8_t pinIndex, uint8_t volatile* dataDirection, uint8_t volatile* inputBuffer,uint8_t volatile* outputBuffer);
-void setDataDirectionMode(driver periferal, dataDirectionMode directionMode);
-void setPin(driver periferal, int pinValue);
-char readInput(driver periferal) ;
+driver registerNewDriver(uint8_t pinIndex, uint8_t volatile* dataDirection, uint8_t volatile* inputBuffer, uint8_t volatile* outputBuffer);
+void setDataDirectionMode(driver periferal, dataDirectionMode direction);
+void setPin(driver periferal, pinValue pinVal);
+pinValue readInput(driver periferal) ;
 
 #endif /* INCFILE1_H_ */

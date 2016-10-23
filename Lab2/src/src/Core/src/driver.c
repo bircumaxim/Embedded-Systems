@@ -4,7 +4,7 @@
  * Created: 10/23/2016 6:08:58 PM
  *  Author: max
  */ 
-#include "../headers/driver.h"
+#include "../include/driver.h"
 
 driver registerNewDriver(uint8_t pinIndex, uint8_t volatile* dataDirection, uint8_t volatile* inputBuffer,uint8_t volatile* outputBuffer){
 	driver drv;
@@ -15,23 +15,26 @@ driver registerNewDriver(uint8_t pinIndex, uint8_t volatile* dataDirection, uint
 	return drv;
 }
 
-void setPin(driver periferal, int pinValue){
-	if(pinValue){
-		*periferal.outputBuffer |= 1 << periferal.pinIndex;
-		} else {
-		*periferal.outputBuffer &= ~(1 << periferal.pinIndex);
-	}
-	
-}
-
-void setDataDirectionMode(driver periferal, dataDirectionMode directionMode){
-	if(directionMode == inputMode){
+void setDataDirectionMode(driver periferal, dataDirectionMode direction){
+	if(direction == input){
 		*periferal.dataDirection &= ~(1 << periferal.pinIndex);
 		} else {
 		*periferal.dataDirection |= 1 << periferal.pinIndex;
 	}
 }
 
-char readInput(driver periferal) {
-	return bit_is_clear(*periferal.inputBuffer, periferal.pinIndex);
+void setPin(driver periferal, pinValue pinVal){
+	if(pinVal == high){
+		*periferal.outputBuffer |= 1 << periferal.pinIndex;
+	} else {
+		*periferal.outputBuffer &= ~(1 << periferal.pinIndex);
+	}
+	
+}
+
+pinValue readInput(driver periferal) {
+	if(bit_is_clear(*periferal.inputBuffer, periferal.pinIndex))
+		return zero;
+	else
+		return high;
 }
