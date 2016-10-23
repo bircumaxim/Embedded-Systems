@@ -4,24 +4,20 @@
  * Created: 10/22/2016 8:39:04 PM
  *  Author: max
  */ 
-
-#include <stdio.h>
-#include "uart_stdio.h"
+#include <avr/io.h>
 #include <util/delay.h>
+#include "core/headers/driver.h"
 
-int main(void)
+void main(void)
 {
-    while(1)
-    {
-        uart_stdio_init();
-        
-        int i = 0;
-        
-        while(1){
-	        i++;
-	        printf("Counter %d \n",i);
-	        _delay_ms(1000);
-        }
-        return 1;
-    }
+	driver led = registerNewDriver(1, &DDRA, &PINA, &PORTA);
+	driver button = registerNewDriver(0, &DDRA, &PINA, &PORTA );
+	
+	setDataDirectionMode(led, outputMode);
+	setDataDirectionMode(button, inputMode);
+	setPin(button,1);
+	
+    while(1){
+		setPin(led, readInput(button));
+    }   
 }
