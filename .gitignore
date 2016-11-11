@@ -42,3 +42,5 @@ Lab1/src/src/Debug/Makefile
 *.map
 *.srec
 *.cproj
+*.pdsbak
+Lab2/src/src/Debug/Makefile
