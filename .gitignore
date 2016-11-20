@@ -42,3 +42,6 @@ Lab1/src/src/Debug/Makefile
 *.map
 *.srec
 *.cproj
+Lab2/src/src/Debug/
+Lab2/schematics/Last Loaded lab2.pdsbak
+Lab2/schematics/Backup Of lab2.pdsbak
