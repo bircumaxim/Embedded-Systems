@@ -1,0 +1,45 @@
+\section{Micro Controller}
+
+%----------------------------------------------------------------------------------------
+%	DEFINITION SUBESCTION
+%----------------------------------------------------------------------------------------
+\subsection{Definition}
+A micro-controller (or MCU, short for micro-controller unit) is a small computer (SoC) on a single integrated circuit containing a processor core, memory, and programmable input/output peripherals. Program memory in the form of Fierroelectric RAM, NOR flash or OTP ROM is also often included on chip, as well as a typically small amount of RAM. Micro-controllers are designed for embedded applications, in contrast to the microprocessors used in personal computers or other general purpose applications consisting of various discrete chips.
+
+%----------------------------------------------------------------------------------------
+%	USEAGE SUBESCTION
+%----------------------------------------------------------------------------------------
+
+\subsection{Usage}
+Micro-controllers are used in automatically controlled products and devices, such as automobile engine control systems, implantable medical devices, remote controls, office machines, appliances, power tools, toys and other embedded systems. By reducing the size and cost compared to a design that uses a separate microprocessor, memory, and input/output devices, micro-controllers make it economical to digitally control even more devices and processes. Mixed signal micro-controllers are common, integrating analog components needed to control non-digital electronic systems.
+
+%----------------------------------------------------------------------------------------
+%	WTF SUBESCTION
+%----------------------------------------------------------------------------------------
+
+\subsection{How does the micro-controller operate?}
+Even though there is a large number of different types of micro-controllers and even more programs created for their use only, all of them have many things in common. Thus, if you learn to handle one of them you will be able to handle them all. A typical scenario on the basis of which it all functions is as follows:
+\begin{enumerate}
+\item Power supply is turned off and everything is still the program is loaded into the micro-controller, nothing indicates what is about to come
+\item Power supply is turned on and everything starts to happen at high speed! The control logic unit keeps everything under control. It disables all other circuits except quartz crystal to operate. While the preparations are in progress, the first milliseconds go by.
+\item Power supply voltage reaches its maximum and oscillator frequency becomes stable. SFRs are being filled with bits reflecting the state of all circuits within the micro-controller. All pins are configured as inputs. The overall electronics starts operation in rhythm with pulse sequence. From now on the time is measured in micro and nanoseconds.
+\item Program Counter is set to zero. Instruction from that address is sent to instruction decoder which recognizes it, after which it is executed with immediate effect.
+\item The value of the Program Counter is incremented by 1 and the whole process is repeated several million times per second.
+\end{enumerate}
+
+%----------------------------------------------------------------------------------------
+%	SFR SUBESCTION
+%----------------------------------------------------------------------------------------
+
+\subsection{Special Function Registers (SFR)}
+Special function registers are part of RAM memory. Their purpose is predefined by the manufacturer and cannot be changed therefore. Since their bits are physically connected to particular circuits within the micro-controller, such as A/D converter, serial communication module etc., any change of their state directly affects the operation of the micro-controller or some of the circuits. For example, writing zero or one to the SFR controlling an input/output port causes the appropriate port pin to be configured as input or output. In other words, each bit of this register controls the function of one single pin.
+
+%----------------------------------------------------------------------------------------
+%	PROGRAM COUNTER SUBESCTION
+%----------------------------------------------------------------------------------------
+
+\subsection{Program Counter}
+Program Counter is an engine running the program and points to the memory address containing the next instruction to execute. After each instruction execution, the value of the counter is incremented by 1. For this reason, the program executes only one instruction at a time just as it is written. However…the value of the program counter can be changed at any moment, which causes a “jump” to a new memory location. This is how subroutines and branch instructions are executed. After jumping, the counter resumes even and monotonous automatic counting +1, +1, +1…
+
+
+
