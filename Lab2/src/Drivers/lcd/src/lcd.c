@@ -48,10 +48,10 @@ me@avinashgupta.com
 #include <inttypes.h>
 #include <util/delay.h>
 
-#include "lcd.h"
+#include "../headers/lcd.h"
 
 //Custom Charset support
-#include "custom_char.h"
+#include "../headers/custom_char.h"
 
 #define LCD_DATA_PORT 	PORT(LCD_DATA)
 #define LCD_E_PORT 		PORT(LCD_E)
