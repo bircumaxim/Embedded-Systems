@@ -4,12 +4,11 @@
  * Created: 11/11/2016 9:32:49 AM
  *  Author: max
  */ 
+#define UART_BAUD  9600
+#define F_CPU 1000000UL
 
 #include <stdio.h>
 #include <avr/io.h>
-
-#define UART_BAUD  9600
-#define F_CPU 1000000UL
 
 int uart_stdio_putchar(char c, FILE *stream)
 {

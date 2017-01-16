@@ -8,26 +8,33 @@
 #include "../headers/L293.h"
 #include <stdlib.h>
 
-L293Out registerL293Out(int ind1ID, int ind2ID, int enID, uint8_t volatile *writeBuffer, uint8_t volatile *dataDirection){
+L293Out l293_register_out(int ind1ID, int ind2ID, int enID, uint8_t volatile *dataDirection, uint8_t volatile *writeBuffer, uint16_t volatile *ocr){
 	L293Out out;
 	out.in1 = registerConnection(ind1ID, dataDirection, NULL, writeBuffer);
 	out.in2 = registerConnection(ind2ID, dataDirection, NULL, writeBuffer);
 	out.en = registerConnection(enID, dataDirection, NULL, writeBuffer);
 	
+	out.ocr = ocr;
+	*out.ocr = 0;
+	
 	setDataDirectionMode(out.in1, write);
 	setDataDirectionMode(out.in2, write);
 	setDataDirectionMode(out.en, write);
+	
+	writePin(out.in1, low);
+	writePin(out.in2, low);
+	writePin(out.en, low);
+	init_pwm();
+	return out;
 }
 
-L293 registerL293(L293Out out1, L293Out out2){
-	L293 l293;
-	l293.out1 = out1;
-	l293.out2 = out2;
+void init_pwm(){
+	TCCR1A |= (1 << WGM11) | (1 << WGM10) | (1 << COM1A1) | (1 << COM1B1);
+	TCCR1B |= (1 << WGM12) | (1 << CS11) | (1 << CS10);
 }
 
-void startWheel(L293Out will){
-	writePin(will.in1, high);
-}
+
+
 
 
 

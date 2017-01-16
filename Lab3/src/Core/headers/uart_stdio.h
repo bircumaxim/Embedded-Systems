@@ -9,7 +9,10 @@
 #ifndef UART_STDIO_H_
 #define UART_STDIO_H_
 
-int uart_stdio_putchar(char c, FILE *stream);
+#include <stdio.h>
+#include <stdlib.h>
+
 void uart_stdio_init();
+int uart_stdio_putchar(char c, FILE *stream);
 
 #endif /* UART_STDIO_H_ */

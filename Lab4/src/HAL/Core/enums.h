@@ -19,5 +19,4 @@ typedef enum pinValue{
 	low
 } pinValue;
 
-
 #endif /* ENUMS_H_ */
