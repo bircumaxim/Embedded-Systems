@@ -14,7 +14,7 @@
 #include <avr/interrupt.h>
 
 
-#define MAX_TASKS 20
+#define MAX_TASKS 10
 #define MS_PER_CLOCK 10
 
 typedef struct Task {
